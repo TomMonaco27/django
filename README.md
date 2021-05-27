@@ -22,3 +22,5 @@ a) Сделать инициализацию гита;
 е) Добавить меня (Vokler) в контребюторы вашего проекта и сделать New Pull Request на меня, чтобы я мог проверить ДЗ.
 
 ![Иллюстрация к проекту](https://github.com/TomMonaco27/django/blob/lesson-1/Index.png)
+![Иллюстрация к проекту](https://github.com/TomMonaco27/django/blob/lesson-1/Products.png)
+
