@@ -1,4 +1,4 @@
-# Урок 1. Основы Django Frameworks
+# Урок 1. Знакомство с Django (Основы Django Frameworks)
 Django GeekBrains Lessons 24.05.2021 
 
 Задание 1. Знакомство с фреймворком
