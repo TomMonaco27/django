@@ -1,7 +1,7 @@
-# django study
-django GeekBrains Lessons 24.05.2021 (Основы Django Frameworks)
+# Урок 1. Основы Django Frameworks
+Django GeekBrains Lessons 24.05.2021 
 
-Урок 1. Знакомство с фреймворком
+Задание 1. Знакомство с фреймворком
 1. Ознакомиться с версткой сайта, над которой будете работать.
 2. Подгоовить проект:
 a) Создать папку geekshop-server;
