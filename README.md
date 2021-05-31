@@ -32,4 +32,9 @@ Django GeekBrains Lessons 24.05.2021
     {% now "jS F Y H:i" %}
     
 6. В процессе...
-    
+
+8. Иллюстрации:
+![Иллюстрация к проекту](https://github.com/TomMonaco27/django/blob/lesson-2/Index2.png)
+![Иллюстрация к проекту](https://github.com/TomMonaco27/django/blob/lesson-2/footer2.png)
+![Иллюстрация к проекту](https://github.com/TomMonaco27/django/blob/lesson-2/Products2.png)
+
