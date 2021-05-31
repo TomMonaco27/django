@@ -20,7 +20,7 @@ Django GeekBrains Lessons 24.05.2021
         <p> {{ product.about }}</p>
     {% endfor %}
 {% else %}
-    <h2>Товаров на складе нет!</h2>
+    <p>Товаров на складе нет!</p>
 {% endif %}
 
 2. Использованные Placeholder'ы:
