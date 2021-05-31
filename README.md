@@ -15,7 +15,7 @@ Django GeekBrains Lessons 24.05.2021
 
  {% if products %}
     {% for product in products %}
-        <h3> {{ product.name }}</h3>
+        <p> {{ product.name }}</p>
         <p> {{ product.price }}</p>
         <p> {{ product.about }}</p>
     {% endfor %}
