@@ -10,3 +10,26 @@ Django GeekBrains Lessons 24.05.2021
 
 6*. Организовать загрузку динамического контента в контроллер products из json файла (добавив json файл в папку products/fixtures).
 
+Реализованно:
+1. Вывод трех товаров(products) из словаря context с помощью конструкции:
+
+ {% if products %}
+    {% for product in products %}
+        <h3> {{ product.name }}</h3>
+        <p> {{ product.price }}</p>
+        <p> {{ product.about }}</p>
+    {% endfor %}
+{% else %}
+    <h2>Товаров на складе нет!</h2>
+{% endif %}
+
+2. Использованные Placeholder'ы:
+
+  index.html  
+    {% now "d.m.y H:i" %}
+  products.html
+    {% now "Y" %}
+    {% now "jS F Y H:i" %}
+    
+6. В процессе...
+    
