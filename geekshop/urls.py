@@ -25,3 +25,4 @@ urlpatterns = [
     path('test-context/', test_context, name='test_context'), # Тестовая страница
     path('test/', test, name='test'),   # Тестовая страница
 ]
+
