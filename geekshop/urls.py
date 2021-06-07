@@ -14,15 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+# для локальной работы с медиа-файлами
+from django.conf import settings
+from django.conf.urls.static import static
 
-from products.views import index, products, test_context, test
+from products.views_json import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
-    path('products/', products, name='products'),
-    path('test-context/', test_context, name='test_context'), # Тестовая страница
-    path('test/', test, name='test'),   # Тестовая страница
+    path('products/', include('products.urls', namespace='products')),
 ]
 
+# Удостоверимся, что мы работаем локально
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
