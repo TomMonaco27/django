@@ -13,17 +13,24 @@
 Решения:
 
 Запуск миграций и сервера:
+
 python manage.py makemigrations
+
 python manage.py migrate
+
 python manage.py runserver
 
 Создание суперпользователя:
+
 python manage.py createsuperuser
 
  
 загрузки в/из баз данных из файла:
+
 python manage.py dumpdata products.ProductCategory > categories.json
+
 python manage.py dumpdata products.Product > product.json
 
 python manage.py loaddata products/fixtures/categories.json
+
 python manage.py loaddata products/fixtures/product.json
