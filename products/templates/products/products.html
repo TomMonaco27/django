@@ -1,14 +1,11 @@
-{% extends 'products/base.html'%}
+{% extends 'products/base.html' %}
 {% load static %}
-
-
 
 {% block css %}
     <link href="{% static 'css/products.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
-    <!-- Page Content -->
     <div class="container">
 
         <div class="row">
@@ -17,13 +14,9 @@
 
                 <h1 class="my-4">GeekShop</h1>
                 <div class="list-group">
-                    {% if categories %}
-                        {% for categorie in categories %}
-                    <a href="#" class="list-group-item"> {{ categorie }}</a>
+                    {% for category in categories %}
+                        <a href="#" class="list-group-item">{{ category.name }}</a>
                     {% endfor %}
-                    {% else %}
-                        <h2>Товара на складе нет!</h2>
-                    {% endif %}
                 </div>
 
             </div>
@@ -62,32 +55,32 @@
                 </div>
 
                 <div class="row">
-                    {% if products %}
-                        {% for product in products %}
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card h-100">
-                            <a href="#">
-                                <img class="card-img-top"
-                                     src="/media/{{ product.image }}"
-                                     alt="">
-                            </a>
-                            <div class="card-body">
-                                <h4 class="card-title">
-                                    <a href="#">{{ product.name }}</a>
-                                </h4>
-                                <h5>{{ product.price }} руб.</h5>
-                                <p class="card-text">{{ product.description }}</p>
-                            </div>
-                            <div class="card-footer text-center">
-                                <button type="button" class="btn btn-outline-success">Отправить в корзину</button>
+
+                    {% for product in products %}
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card h-100">
+                                <a href="#">
+                                    <img class="card-img-top"
+                                         src="{{ product.image.url }}"
+                                         alt="">
+                                </a>
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <a href="#">{{ product.name }}</a>
+                                    </h4>
+                                    <h5>{{ product.price }} руб.</h5>
+                                    <p class="card-text">{{ product.description }}</p>
+                                </div>
+                                <div class="card-footer text-center">
+                                    <a href="{% url 'baskets:basket_add' product.id %}" class="btn btn-outline-success">
+                                        Отправить в корзину
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    {% endfor %}
 
-                        {% endfor %}
-                    {% else %}
-                        <h2>Товара на складе нет!</h2>
-                    {% endif %}
+
                 </div>
 
                 <nav aria-label="Page navigation example">
@@ -109,17 +102,12 @@
         </div>
 
     </div>
-<!-- /.container -->
-{% endblock  %}
+{% endblock %}
 
 {% block footer %}
-    <!-- Footer -->
     <footer class="py-5 bg-dark">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; GeekShop {% now "Y" %}</p>
-            <p class="m-0 text-center text-white">Сегодня {% now "jS F Y H:i" %}</p>
+            <p class="m-0 text-center text-white">Copyright &copy; GeekShop 2021</p>
         </div>
-    <!-- /.container -->
     </footer>
-{% endblock  %}
-
+{% endblock %}
