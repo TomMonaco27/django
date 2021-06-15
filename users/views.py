@@ -1,9 +1,26 @@
 from django.shortcuts import render, HttpResponseRedirect
-from django.contrib import auth
+from django.contrib import auth, messages
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 
-from users.forms import UserLoginForm, UserRegisterForm
+from users.forms import UserLoginForm, UserRegisterForm, UserProfileForm
+from baskets.models import Basket
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Поздравляем! Успешная регистрация аккаунта.')
+            return HttpResponseRedirect(reverse('users:login'))
+    else:
+        form = UserRegisterForm()
+        context = {
+            'title': 'Страница регистрации',
+            'form': form,
+        }
+        return render(request,'users/register.html',context)
 
 def login(request):
     if request.method == 'POST':
@@ -15,8 +32,6 @@ def login(request):
             if user and user.is_active:
                 auth.login(request, user)
                 return HttpResponseRedirect(reverse('index'))
-        else:
-            print(form.errors)
     else:
         form = UserLoginForm()
     context = {
@@ -25,22 +40,34 @@ def login(request):
     }
     return render(request,'users/login.html',context)
 
-def logout(request):
-    auth.logout(request)
-    return HttpResponseRedirect(reverse('index'))
-
-def register(request):
+@login_required()
+def profile(request):
+    user_req = request.user
     if request.method == 'POST':
-        form = UserRegisterForm(data=request.POST)
+        form = UserProfileForm(data=request.POST, files=request.FILES, instance=user_req)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('users:login'))
+            return HttpResponseRedirect(reverse('users:profile '))
         else:
             print(form.errors)
     else:
-        form = UserRegisterForm()
-        context = {
-            'title': 'Страница регистрации',
+        form = UserProfileForm(instance=user_req)
+
+    total_quantity = 0
+    total_sum = 0
+    baskets =  Basket.objects.filter(user=user_req)
+    for basket in baskets:
+        total_quantity += basket.quantity
+        total_sum += basket.sum()
+    context = {
+            'title': 'Страница профайл',
             'form': form,
+            'baskets': baskets,
+            'total_quantity': total_quantity,
+            'total_sum': total_sum,
         }
-        return render(request,'users/register.html',context)
+    return render(request, 'users/profile.html', context)
+
+def logout(request):
+    auth.logout(request)
+    return HttpResponseRedirect(reverse('index'))
