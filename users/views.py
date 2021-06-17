@@ -1,3 +1,10 @@
+# Create your views here.
+# Ctrl+D продублировать строку
+# Ctrl+Y удалить текущую строку
+# Ctrl+Alt+L - отформатировать все строки в файле под PEP8 (если о пичарме говорим)
+# начинаем ввод и жмем Ctrl+Пробел -подсказки и автозавершение
+# Ctrl+/ - быстро комментировать/разкомментировать строку/строки
+# Ctrl+Q - документация по выбранному объекту
 from django.shortcuts import render, HttpResponseRedirect
 from django.contrib import auth, messages
 from django.urls import reverse
@@ -32,6 +39,8 @@ def login(request):
             user = auth.authenticate(username=username, password=password)
             if user and user.is_active:
                 auth.login(request, user)
+               # return HttpResponseRedirect('/')
+               # return HttpResponseRedirect(reverse('users:login'))
                 return HttpResponseRedirect(reverse('index'))
     else:
         form = UserLoginForm()
@@ -66,3 +75,6 @@ def profile(request):
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect(reverse('index'))
+
+
+
