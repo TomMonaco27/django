@@ -1,3 +1,10 @@
+# Create your views here.
+# Ctrl+D продублировать строку
+# Ctrl+Y удалить текущую строку
+# Ctrl+Alt+L - отформатировать все строки в файле под PEP8 (если о пичарме говорим)
+# начинаем ввод и жмем Ctrl+Пробел -подсказки и автозавершение
+# Ctrl+/ - быстро комментировать/разкомментировать строку/строки
+# Ctrl+Q - документация по выбранному объекту
 from django.shortcuts import render, HttpResponseRedirect
 from django.contrib import auth, messages
 from django.urls import reverse
@@ -6,6 +13,7 @@ from django.contrib.auth.decorators import login_required
 
 from users.forms import UserLoginForm, UserRegisterForm, UserProfileForm
 from baskets.models import Basket
+
 
 def register(request):
     if request.method == 'POST':
@@ -31,6 +39,8 @@ def login(request):
             user = auth.authenticate(username=username, password=password)
             if user and user.is_active:
                 auth.login(request, user)
+               # return HttpResponseRedirect('/')
+               # return HttpResponseRedirect(reverse('users:login'))
                 return HttpResponseRedirect(reverse('index'))
     else:
         form = UserLoginForm()
@@ -53,21 +63,18 @@ def profile(request):
     else:
         form = UserProfileForm(instance=user_req)
 
-    total_quantity = 0
-    total_sum = 0
-    baskets =  Basket.objects.filter(user=user_req)
-    for basket in baskets:
-        total_quantity += basket.quantity
-        total_sum += basket.sum()
     context = {
             'title': 'Страница профайл',
             'form': form,
-            'baskets': baskets,
-            'total_quantity': total_quantity,
-            'total_sum': total_sum,
+            'baskets': Basket.baskets,
+            'total_quantity': Basket.total_quantity,
+            'total_sum': Basket.total_sum,
         }
     return render(request, 'users/profile.html', context)
 
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect(reverse('index'))
+
+
+
