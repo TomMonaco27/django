@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from users.forms import UserLoginForm, UserRegisterForm, UserProfileForm
 from baskets.models import Basket
 
+
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(data=request.POST)
@@ -53,18 +54,12 @@ def profile(request):
     else:
         form = UserProfileForm(instance=user_req)
 
-    total_quantity = 0
-    total_sum = 0
-    baskets =  Basket.objects.filter(user=user_req)
-    for basket in baskets:
-        total_quantity += basket.quantity
-        total_sum += basket.sum()
     context = {
             'title': 'Страница профайл',
             'form': form,
-            'baskets': baskets,
-            'total_quantity': total_quantity,
-            'total_sum': total_sum,
+            'baskets': Basket.baskets,
+            'total_quantity': Basket.total_quantity,
+            'total_sum': Basket.total_sum,
         }
     return render(request, 'users/profile.html', context)
 

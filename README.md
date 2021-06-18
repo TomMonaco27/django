@@ -24,3 +24,4 @@ a) Сделать инициализацию гита;
 
 ![Иллюстрация к проекту](https://github.com/TomMonaco27/django/blob/lesson-1/Index.png)
 ![Иллюстрация к проекту](https://github.com/TomMonaco27/django/blob/lesson-1/Products.png)
+![Иллюстрация к проекту](https://github.com/TomMonaco27/django/blob/lesson-6/Index.png)
