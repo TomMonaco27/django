@@ -1,4 +1,3 @@
-# Create your views here.
 from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
@@ -9,26 +8,20 @@ from admins.forms import UserAdminRegisterForm, UserAdminProfileForm
 
 @user_passes_test(lambda u: u.is_superuser)
 def index(request):
-    return render(request, 'admins/admin.html')
 
-
-# CRUD
-
-# READ
 @user_passes_test(lambda u: u.is_superuser)
 def admin_user(request):
     context = {'title': 'Админ | Пользователи', 'users': User.objects.all()}
     messages.success(request, 'Поздравляем! Успешное создание аккаунта (def admin_user).')
     return render(request, 'admins/admin-users-read.html', context)
 
-# CREATE
+
 def admin_users_create(request):
     if request.method == 'POST':
         form = UserAdminRegisterForm(data=request.POST, files=request.FILES)
         if form.is_valid():
             form.save()
             messages.success(request, 'Поздравляем! Успешное создание аккаунта (def admin_users_create).')
-            #return render(request, 'admins:admin_user_create')
             return HttpResponseRedirect(reverse('admins:admin_user'))
     else:
         form = UserAdminRegisterForm()
@@ -38,7 +31,7 @@ def admin_users_create(request):
         }
     return render(request, 'admins/admin-users-create.html', context)
 
-# UPDATE
+
 @user_passes_test(lambda u: u.is_superuser)
 def admin_users_update(request, id):
     selected_user = User.objects.get(id=id)
@@ -56,7 +49,7 @@ def admin_users_update(request, id):
     }
     return render(request, 'admins/admin-users-update-delete.html',context)
 
-# Mark is NO active
+
 @user_passes_test(lambda u: u.is_superuser)
 def admin_users_no_active(request, id):
     user = User.objects.get(id=id)
@@ -64,7 +57,7 @@ def admin_users_no_active(request, id):
     user.save()
     return HttpResponseRedirect(reverse('admins:admin_users'))
 
-# Mark is YES active
+
 @user_passes_test(lambda u: u.is_superuser)
 def admin_users_active(request, id):
     user = User.objects.get(id=id)
@@ -72,7 +65,7 @@ def admin_users_active(request, id):
     user.save()
     return HttpResponseRedirect(reverse('admins:admin_users'))
 
-# DELETE
+
 @user_passes_test(lambda u: u.is_superuser)
 def admin_users_delete(request, id):
     user = User.objects.get(id=id)
