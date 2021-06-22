@@ -1,5 +1,5 @@
 from django import forms
-from users.forms import UserRegisterForm, UserProfileForm#, UserChangeForm
+from users.forms import UserRegisterForm, UserProfileForm
 
 
 from users.models import User
@@ -14,12 +14,3 @@ class UserAdminRegisterForm(UserRegisterForm):
 class UserAdminProfileForm(UserProfileForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control py-4', 'readonly': False}))
     email = forms.CharField(widget=forms.EmailInput(attrs={'class': 'form-control py-4', 'readonly': False}))
-
-
-#class UserAdminProductCategory(UserChangeForm):
-    #name = forms.CharField(max_length=64, unique=True)
-    #description = models.TextField(blank=True, null=True) # описание может быть или отсутствовать
-
-    # class Meta:
-    #     model = User
-    #     fields =  ('username', 'email', 'image', 'first_name', 'last_name', 'password1', 'password2')
