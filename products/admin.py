@@ -1,5 +1,3 @@
-# Register your models here.
-# Регистрация моделей для отображения в админ-панеле
 from django.contrib import admin
 
 
@@ -20,6 +18,3 @@ class ProductCategoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'description',)
     ordering = ('id',)
     search_fields = ('name',)
-
-
-
