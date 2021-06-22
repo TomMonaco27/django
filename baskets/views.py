@@ -1,4 +1,3 @@
-# Create your views here.
 from django.shortcuts import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
