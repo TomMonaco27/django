@@ -40,8 +40,3 @@ class UserProfileForm(UserChangeForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'first_name', 'last_name')
-
-    # def clean_image(self):
-    #     image = self.cleaned_data['image']
-    #     if image.size == 1:
-    #         raise ValueError
