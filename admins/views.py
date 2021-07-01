@@ -13,7 +13,6 @@ def index(request):
 @user_passes_test(lambda u: u.is_superuser)
 def admin_user(request):
     context = {'title': 'Админ | Пользователи', 'users': User.objects.all()}
-    messages.success(request, 'Поздравляем! Успешное создание аккаунта (def admin_user).')
     return render(request, 'admins/admin-users-read.html', context)
 
 
