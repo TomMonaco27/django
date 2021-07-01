@@ -8,6 +8,7 @@ from admins.forms import UserAdminRegisterForm, UserAdminProfileForm
 
 @user_passes_test(lambda u: u.is_superuser)
 def index(request):
+    return render(request, 'admins/admin.html')
 
 @user_passes_test(lambda u: u.is_superuser)
 def admin_user(request):
